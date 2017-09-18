@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/mKleinCreative/RoamWFriends#readme",
   "dependencies": {
+    "ejs": "^2.5.7",
     "eslint": "^4.7.0",
     "express": "^4.15.4"
   },

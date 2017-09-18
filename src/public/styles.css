@@ -1,0 +1,11 @@
+.form {
+  background-color: white; 
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); 
+  width: 325px; 
+  height: 480px;
+  top: 200px; 
+  padding: 25px 20px;
+  position: relative;
+  z-index: -10;
+  border-radius: 5px;
+}

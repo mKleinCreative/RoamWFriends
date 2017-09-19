@@ -1,13 +1,29 @@
 const express = require('express');
 
 const router = express.Router();
-
+const user = require('../database/controllers/user');
 router.get('/', (request, response) => {
   response.send('hello');
 });
 
 router.get('/signup', (request, response) => {
-  response.render('signup', { user: '' });
+  response.render('signup', { user: '', message: '' });
+});
+
+router.post('/signup', (request, response) => {
+  const { email, password, confirmPassword } = request.body;
+  const validatePassword = password === confirmPassword;
+
+  if (!validatePassword) {
+    return response.render('signup', { user: '', message: "Passwords don't match" });
+  }
+  user.create(email, password)
+    .then((newUser) => {
+      response.send({ newUser });
+    })
+    .catch((error) => {
+      console.log('---===error.message===---', error.message);
+    });
 });
 
 router.get('/login', (request, response) => {

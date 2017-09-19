@@ -1,13 +1,35 @@
 const express = require('express');
 
+const pgp = require('pg-promise')();
+
+const connectionString = 'postgres://localhost:5432/roamwfriends';
+const db = pgp(connectionString);
+
 const server = express();
 const port = process.env.PORT || 3000;
 const user = require('./routes/user');
 const index = require('./routes/index');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const pgSession = require('connect-pg-simple')(session);
+
 
 server.set('views', './src/views');
 server.set('view engine', 'ejs');
 server.use(express.static('./src/public'));
+
+server.use(session({
+  store: new pgSession({
+    conString: connectionString,
+  }),
+  secret: 'catrunlongtimeamirite',
+  resave: true,
+  cookie: { maxAge: 1 * 24 * 60 * 60 * 1000 },
+  saveUninitialized: true,
+}));
+
+server.use(bodyParser.json());
+server.use(bodyParser.urlencoded({ extended: true }));
 
 server.use('/', index);
 server.use('/users', user);

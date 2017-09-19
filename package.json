@@ -5,7 +5,9 @@
   "main": "./src/server.js",
   "scripts": {
     "start": "nodemon",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "db:init": "psql < ./src/database/schema.sql && psql roamwfriends < node_modules/connect-pg-simple/table.sql",
+    "db:reset": "dropdb roamwfriends && createdb roamwfriends && npm run db:init"
   },
   "repository": {
     "type": "git",
@@ -18,9 +20,14 @@
   },
   "homepage": "https://github.com/mKleinCreative/RoamWFriends#readme",
   "dependencies": {
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.1",
+    "connect-pg-simple": "^4.2.1",
     "ejs": "^2.5.7",
     "eslint": "^4.7.0",
-    "express": "^4.15.4"
+    "express": "^4.15.4",
+    "express-session": "^1.15.5",
+    "pg-promise": "^6.7.1"
   },
   "devDependencies": {
     "eslint-config-airbnb-base": "^12.0.0",

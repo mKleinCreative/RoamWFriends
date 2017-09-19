@@ -16,14 +16,24 @@ const create = (email,password) => {
 
 const getUserByEmail = (email) => {
   return db.oneOrNone(`
-    SELECT
-     email
+    SELECT *
     FROM users
     WHERE
      email=$1
-    `,[email])
-}
+    `, [email]);
+};
 
-module.exports = { create,
-                   getUserByEmail,
-                 };
+const getUserById = (id) => {
+  return db.oneOrNone(`
+    SELECT *
+    FROM users
+    WHERE
+     id=$1
+     `, [id]);
+};
+
+module.exports = {
+  create,
+  getUserByEmail,
+  getUserById,
+};

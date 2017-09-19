@@ -12,7 +12,7 @@ const index = require('./routes/index');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const pgSession = require('connect-pg-simple')(session);
-
+const passport = require('passport');
 
 server.set('views', './src/views');
 server.set('view engine', 'ejs');
@@ -27,6 +27,9 @@ server.use(session({
   cookie: { maxAge: 1 * 24 * 60 * 60 * 1000 },
   saveUninitialized: true,
 }));
+
+server.use(passport.initialize());
+server.use(passport.session());
 
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));

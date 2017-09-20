@@ -23,7 +23,14 @@
   top:150px;
   height:250px;
 }
+
 .posts {
   top:150px;
   padding-left:20%;
+}
+
+.profile-picture-main {
+  width: 236px;
+  height: 236px;
+  border-radius: 50%;
 }

@@ -8,6 +8,7 @@ const db = pgp(connectionString);
 const server = express();
 const port = process.env.PORT || 3000;
 const user = require('./routes/user');
+const review = require('./routes/review');
 const index = require('./routes/index');
 const bodyParser = require('body-parser');
 const session = require('express-session');
@@ -36,6 +37,7 @@ server.use(bodyParser.urlencoded({ extended: true }));
 
 server.use('/', index);
 server.use('/users', user);
+server.use('/reviews', review);
 
 server.listen(3000, (err) => {
   console.log(`<3333333 running server on port ${port} <3333333`);

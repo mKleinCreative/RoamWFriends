@@ -2,6 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 const userFunctions = require('../database/controllers/user');
+const reviewFunctions = require('../database/controllers/review');
 const { passport } = require('./auth');
 
 
@@ -60,16 +61,21 @@ router.use((req, res, next) => {
   if (req.user) {
     next()
   } else {
-    res.redirect('/')
+    res.redirect('/');
   }
 })
 
 router.get('/profile', (request, response) => {
-  response.render('profile', { user: request.user , editing: false } );
+  console.log( '---===request.user.id===---', request.user.id );
+  const userId = request.user.id;
+  reviewFunctions.displayUserSpecificReviews(userId)
+    .then((userReviews) => {
+      response.render('profile', { user: request.user, editing: false, reviews: userReviews });
+    })
 });
 
 router.get('/profile/edit', (request, response) => {
-  response.render('profile', { user: request.user , editing: true } );
+  response.render('profile', { user: request.user , editing: true });
 })
 
 router.post('/profile/edit', (request, response) => {
@@ -77,19 +83,34 @@ router.post('/profile/edit', (request, response) => {
     name,
     current_city,
     user_image,
-    id } = request.body
+    id,
+  } = request.body;
   userFunctions.update(name, current_city, user_image, id)
-    .then((updatedUser) => {
-      console.log( 'hello', updatedUser);
-      response.render('profile', { user: updatedUser , editing: false })
+    .then(() => {
+      response.redirect('/users/profile/updated');
     }).catch((error) => {
-    console.log(error.message);
-  })
-})
+    console.error(error.message);
+  });
+});
+
+router.get('/profile/updated', (request, response) => {
+  response.render('profile', { user: request.user, editing: false });
+});
+
+router.get('/review', (request, response) => {
+  const userId = request.session.user.id
+  console.log( '---===userId===---', userId ); 
+  reviewFunctions.displayUserSpecificReviews(userId)
+  .then((allUserReviews) => {
+    console.log( '---===allUserReviews===---', allUserReviews ); 
+    response.render('profile', { user: request.session.user, reviews: allUserReviews });
+  });
+});
+
 
 router.get('/logout', (req, res) => {
-  req.logout()
-  res.redirect('/')
-})
+  req.logout();
+  res.redirect('/');
+});
 
 module.exports = router;

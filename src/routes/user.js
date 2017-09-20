@@ -1,12 +1,12 @@
 const express = require('express');
 
 const router = express.Router();
-const user = require('../database/controllers/user');
+const userFunctions = require('../database/controllers/user');
 const { passport } = require('./auth');
 
 
 router.get('/signup', (request, response) => {
-  response.render('signup', { user: '', message: '' });
+  response.render('signup', { user: request.session.user || null, message: '' });
 });
 
 router.post('/signup', (request, response) => {
@@ -15,16 +15,21 @@ router.post('/signup', (request, response) => {
 
 
   if (!validatePassword) {
-    return response.render('signup', { user: '', message: 'Passwords don\'t match' });
+    return response.render('signup', { user: request.session.user || null, message: 'Passwords don\'t match' });
   }
-  user.getUserByEmail(email)
+  userFunctions.getUserByEmail(email)
     .then((existingUser) => {
       if (existingUser) {
-        return response.render('signup', { user: '', message: 'Accout with this email exists' });
+        return response.render('signup', { user: request.session.user || null, message: 'Accout with this email exists' });
       } else if (!existingUser) {
-        user.create(email, password)
+        userFunctions.create(email, password)
           .then((newUser) => {
-            response.send({ newUser });
+            // create cookie here!
+            request.login(newUser, (err) => {
+              if (err) { return next(err); }
+              return response.redirect('/users/profile')
+            });
+            response.render('profile', { user: newUser, message: '' });
           })
           .catch((error) => {
             console.log('---===error.message===---', error.message);
@@ -36,23 +41,55 @@ router.post('/signup', (request, response) => {
 });
 
 router.get('/login', (request, response) => {
-  response.render('login', { user: '' });
+  response.render('login', { user: request.session.user || null , message: '' });
 });
 
 router.post('/login', (request, response, next) => {
 
   passport.authenticate('local',  (err, user, info) => {
     if (err) { return next(err); }
-    if (!user) { return response.render('login', { user:'', message: 'Invalid Email or Password' }); }
-    request.logIn(user, (err) => {
+    if (!user) { return response.render('login', { user: request.session.user || null, message: 'Invalid Email or Password' }); }
+    request.login(user, (err) => {
       if (err) { return next(err); }
-      return response.redirect('/profile')
+      return response.redirect('/users/profile')
     });
   })(request, response, next);
 });
 
+router.use((req, res, next) => {
+  if (req.user) {
+    next()
+  } else {
+    res.redirect('/')
+  }
+})
+
 router.get('/profile', (request, response) => {
-  response.send('Profile Page');
+  response.render('profile', { user: request.user , editing: false } );
 });
+
+router.get('/profile/edit', (request, response) => {
+  response.render('profile', { user: request.user , editing: true } );
+})
+
+router.post('/profile/edit', (request, response) => {
+  const {
+    name,
+    current_city,
+    user_image,
+    id } = request.body
+  userFunctions.update(name, current_city, user_image, id)
+    .then((updatedUser) => {
+      console.log( 'hello', updatedUser);
+      response.render('profile', { user: updatedUser , editing: false })
+    }).catch((error) => {
+    console.log(error.message);
+  })
+})
+
+router.get('/logout', (req, res) => {
+  req.logout()
+  res.redirect('/')
+})
 
 module.exports = router;

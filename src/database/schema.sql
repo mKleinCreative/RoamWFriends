@@ -8,7 +8,10 @@ CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   email VARCHAR(150) UNIQUE NOT NULL,
   password VARCHAR(150) NOT NULL,
-  user_image TEXT DEFAULT '/images/default-user.png'
+  user_image TEXT DEFAULT '/images/default-user.png',
+  date_joined TIMESTAMP DEFAULT now(),
+  current_city TEXT ,
+  name TEXT
 );
 
 DROP TABLE IF EXISTS reviews;

@@ -32,8 +32,19 @@ const getUserById = (id) => {
      `, [id]);
 };
 
+const update = (name, current_city, user_image, id) => {
+  return db.any(`
+    UPDATE users
+    SET (name, current_city, user_image) = ($1,$2,$3)
+    WHERE
+     id = $4
+     RETURNING *
+`, [name, current_city, user_image, id]);
+};
+
 module.exports = {
   create,
   getUserByEmail,
   getUserById,
+  update,
 };

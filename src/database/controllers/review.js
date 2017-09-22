@@ -9,13 +9,13 @@ const displayAll = () => {
   `, []);
 };
 
-const create = (user_id, type_id, title, body, city_id) => {
-  return db.one(`
+const create = (user_id, type_id, title, body, city) => {
+  return db.any(`
     INSERT INTO
-      reviews(user_id, type_id, title, body, city_id)
+      reviews(user_id, type_id, title, body, city)
     VALUES 
       ($1, $2, $3, $4, $5)
-  `, [user_id, type_id, title, body, city_id])
+  `, [user_id, type_id, title, body, city])
 };
 
 const displaySingleReview = (id) => {
@@ -48,8 +48,8 @@ const displayCitySpecificReviews = (city) => {
       reviews
     WHERE
       reviews.city = $1
-  `, [city])
-}
+  `, [city]);
+};
 
 const updateReview = (id, type_id, title, body, city) => {
   return db.none(`
@@ -79,6 +79,7 @@ module.exports = {
   create,
   displaySingleReview,
   displayUserSpecificReviews,
+  displayCitySpecificReviews,
   updateReview,
   deleteReview,
 };

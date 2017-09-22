@@ -9,14 +9,14 @@ router.get('/', (request, response) => {
   const userId = request.user.id;
   reviewFunctions.displayUserSpecificReviews(userId)
     .then((userReviews) => {
-      response.render('users/profile', { user: request.user, editing: false, reviews: userReviews });
+      response.render('users/profile', { user: request.user, editing: false, reviews: userReviews, city: false });
     });
 });
 
 router.get('/edit', (request, response) => {
   reviewFunctions.displayUserSpecificReviews(request.user.id)
     .then((reviews) => {
-      response.render('users/profile', { user: request.user, editing: true, reviews });
+      response.render('users/profile', { user: request.user, editing: true, reviews, city: true });
     });
 });
 
@@ -38,7 +38,7 @@ router.post('/edit', (request, response) => {
 router.get('/updated', (request, response) => {
   reviewFunctions.displayUserSpecificReviews(request.user.id)
     .then((reviews) => {
-      response.render('users/profile', { user: request.user, editing: false, reviews });
+      response.render('users/profile', { user: request.user, editing: false, reviews, city: true });
     });
 });
 
@@ -48,7 +48,7 @@ router.get('/review', (request, response) => {
   reviewFunctions.displayUserSpecificReviews(userId)
     .then((allUserReviews) => {
       console.log( '---===allUserReviews===---', allUserReviews ); 
-      response.render('users/profile', { user: request.session.user, reviews: allUserReviews });
+      response.render('users/profile', { user: request.session.user, reviews: allUserReviews, city: true });
     });
 });
 

@@ -7,25 +7,24 @@ const userFunctions = require('../database/controllers/user');
 router.get('/', (request, response) => {
   reviewFunctions.displayAll()
     .then((allReviews) => {
-      response.render('cities/view', { user: request.session.user, reviews: allReviews });
+      response.render('cities/view', { user: request.user, reviews: allReviews || null, city: true });
     });
 });
 
 router.get('/new', (request, response) => {
-  response.render('reviews/create', { user: request.user, message: null });
+  response.render('reviews/create', { user: request.user, reviews: null, message: null, city: false });
 });
 
 router.post('/', (request, response) => {
-  const user_id = request.session.user.id;
   const {
     type_id,
     title,
     body,
     city,
   } = request.body;
-  reviewFunctions.create(user_id, type_id, title, body, city)
-    .then((createdUser) => {
-      response.redirect('/profile')
+  reviewFunctions.create(request.user.id, type_id, title, body, city)
+    .then(() => {
+      response.redirect('/profile');
     });
 });
 
@@ -35,7 +34,7 @@ router.get('/:id', (request, response) => {
     .then((cityReviews) => {
       userFunctions.getById(cityReviews.user_id)
         .then((reviewer) => {
-          response.render('reviews/viewFull', { reviews: cityReviews, user: reviewer });
+          response.render('reviews/viewFull', { reviews: cityReviews, user: reviewer, city: true });
         });
     });
 });
@@ -54,7 +53,7 @@ router.get('/:id/edit', (request, response) => {
     .then((cityReview) => {
       userFunctions.getById(cityReview.user_id)
         .then((reviewer) => {
-          response.render('reviews/edit', { reviews: cityReview, user: reviewer, message: null });
+          response.render('reviews/edit', { reviews: cityReview, user: reviewer, message: null, city: true });
         });
     });
 });

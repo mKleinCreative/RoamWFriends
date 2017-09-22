@@ -1,45 +1,18 @@
 const express = require('express');
 
 const router = express.Router();
-const cityFunctions = require('../../database/controllers/city');
+const reviewFunctions = require('../../database/controllers/review');
+const userFunctions = require('../../database/controllers/user');
 
-router.get('/', (request, response) => {
-  cityFunctions.displayAll()
-    .then((cities) => {
-      response.json({ city: cities });
-    });
-});
-
-router.post('/', (request, response) => {
-  const { city_name } = request.body;
-  cityFunctions.create(city_name)
-    .then((newCity) => {
-      response.json({ city: newCity });
-    });
-});
-
-router.get('/:id', (request, response) => {
-  const { id } = request.params;
-  cityFunctions.displayCityById(id)
-    .then((returnedCity) => {
-      response.json({ returnedCity });
-    });
-});
-
-// router.get('/:name', (request, response) => {
-//   const { name } = request.params
-//   cityFunctions.displayCityByName(name)
-//     .then((city) => {
-//       response.json({ city });
-//     });
-// });
-
-router.post('/:id', (request, response) => {
-  const { id } = request.params;
-  const { city_name, city_image } = request.body;
-  cityFunctions.update(id, city_name, city_image)
-    .then((updatedCity) => {
-      response.json({ updatedCity });
+router.get('/:city', (request, response) => {
+  const { city } = request.params;
+  console.log("city", city)
+  reviewFunctions.displayCitySpecificReviews(city)
+    .then((cityReviews) => {
+      userFunctions.getById(cityReviews.user_id)
+        .then((reviewer) => {
+          response.render('cities/view', { reviews: cityReviews, user: reviewer, city: true });
+        });
     });
 });
 

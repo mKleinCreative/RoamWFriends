@@ -22,6 +22,7 @@ CREATE TABLE reviews (
   city VARCHAR(30) NULL,
   title VARCHAR(30) NOT NULL,
   body VARCHAR(255) NOT NULL,
+  review_image TEXT DEFAULT '/images/default-city.svg',
   time_posted TIMESTAMP DEFAULT now()
 );
 
@@ -35,3 +36,6 @@ CREATE TABLE type_of_review (
 ALTER TABLE reviews ADD FOREIGN KEY (user_id) REFERENCES "users" ("id") ON DELETE CASCADE;
 ALTER TABLE reviews ADD FOREIGN KEY (type_id) REFERENCES "type_of_review" ("id");
 
+INSERT INTO type_of_review (type_name) VALUES ('Eats');
+INSERT INTO type_of_review (type_name) VALUES ('Night Life');
+INSERT INTO type_of_review (type_name) VALUES ('Monuments');

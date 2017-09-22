@@ -1,0 +1,16 @@
+<% include ../partials/header.ejs %>
+<% include ../partials/navbar.ejs %>
+<div class="splash-page" style="width: 100%; height: 500px; background-color: grey;">
+  
+</div>
+<div class="col col-md-8 posts">
+<% reviews.forEach((reviews) => { %>
+  <img src="<%= user.user_image %>" class="profile-picture-main" >
+  <h2><%= reviews.city %></h2>
+  <h3><%= reviews.title %></h3>
+   <p><i><%= reviews.time_posted %></i></p>
+   <p><%= reviews.body %></p>
+
+<% }); %>
+</div>
+<% include ../partials/footer.ejs %>

@@ -2,7 +2,7 @@
 <% reviews.forEach((reviews) => { %>
   <div class="review-div">
     <h4><a href=/reviews/<%= reviews.id %>> "<%= reviews.title %>" </a></h4>
-    <i class="fa fa-trash-o" aria-hidden="true"></i>
-    <i class="fa fa-pencil" aria-hidden="true"></i>
+    <a href="/reviews/delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+    <a href="/reviews/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
   </div>
 <% }); %>

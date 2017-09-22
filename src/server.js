@@ -9,7 +9,7 @@ const server = express();
 const port = process.env.PORT || 3000;
 const user = require('./routes/users/user');
 const profile = require('./routes/users/profile/profile');
-const city = require('./routes/cities/city');
+// const city = require('./routes/cities/city');
 const login = require('./routes/login/login');
 const review = require('./routes/review');
 const index = require('./routes/index');
@@ -40,18 +40,18 @@ server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 
 server.use('/', index);
-server.use('/cities', city);
+// server.use('/cities', city);
 server.use('/reviews', review);
 server.use('/login', login);
 server.use('/auth', console.log);
 
-// server.use((request, response, next) => {
-//   if (request.user) {
-//     next();
-//   } else {
-//     response.redirect('/');
-//   }
-// });
+server.use((request, response, next) => {
+  if (request.user) {
+    next();
+  } else {
+    response.redirect('/');
+  }
+});
 
 server.use('/users', user);
 server.use('/profile', profile);

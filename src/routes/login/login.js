@@ -15,7 +15,7 @@ router.post('/', (request, response, next) => {
     if (!user) { return response.render('login', { user: request.session.user || null, message: 'Invalid Email or Password' }); }
     request.login(user, (err) => {
       if (err) { return next(err); }
-      return response.redirect('/profile/:id')
+      return response.redirect('/profile')
     });
   })(request, response, next);
 });

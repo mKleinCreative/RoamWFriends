@@ -51,7 +51,7 @@ const displayCitySpecificReviews = (city) => {
   `, [city])
 }
 
-const updateReview = (user_id) => {
+const updateReview = (id, type_id, title, body, city) => {
   return db.none(`
     UPDATE
       reviews
@@ -60,8 +60,8 @@ const updateReview = (user_id) => {
       =
     ($2, $3, $4, $5)
     WHERE
-      reviews.user_id = $1
-  `, [user_id, type_id, title, body, city]);
+      reviews.id = $1
+  `, [id, type_id, title, body, city]);
 };
 
 const deleteReview = (id) => {

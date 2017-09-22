@@ -45,13 +45,13 @@ server.use('/reviews', review);
 server.use('/login', login);
 server.use('/auth', console.log);
 
-server.use((request, response, next) => {
-  if (request.user) {
-    next();
-  } else {
-    response.redirect('/');
-  }
-});
+// server.use((request, response, next) => {
+//   if (request.user) {
+//     next();
+//   } else {
+//     response.redirect('/');
+//   }
+// });
 
 server.use('/users', user);
 server.use('/profile', profile);

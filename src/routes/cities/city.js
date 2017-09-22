@@ -6,11 +6,17 @@ const userFunctions = require('../../database/controllers/user');
 
 router.get('/:city', (request, response) => {
   const { city } = request.params;
-  console.log("city", city)
+
   reviewFunctions.displayCitySpecificReviews(city)
     .then((cityReviews) => {
-      userFunctions.getById(cityReviews.user_id)
+      console.log('city====>', cityReviews)
+      return cityReviews;
+    })
+    .then((cityReviews) => {
+      console.log('city-reviews==>',cityReviews.user_id)
+      userFunctions.getById(cityReviews[0].user_id)
         .then((reviewer) => {
+        console.log('2city====>', reviewer)
           response.render('cities/view', { reviews: cityReviews, user: reviewer, city: true });
         });
     });

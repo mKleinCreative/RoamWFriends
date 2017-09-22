@@ -6,7 +6,7 @@ const reviewFunctions = require('../database/controllers/review');
 router.get('/', (request, response) => {
   reviewFunctions.displayAll()
     .then((allReviews) => {
-      response.render('city', { user: request.session.user, reviews: allReviews });
+      response.render('cities/view', { user: request.session.user, reviews: allReviews });
     });
 });
 
@@ -20,8 +20,17 @@ router.post('/new', (request, response) => {
   } = request.body;
   reviewFunctions.create(user_id, type_id, title, body, city)
     .then((createdUser) => {
-      response.redirect('/users/profile')
-    })
-})
+      response.redirect('/profile')
+    });
+});
+
+router.get('/:id', (request, response) => {
+  const { id } = request.params;
+  reviewFunctions.displaySingleReview(id)
+    .then((cityReviews) => {
+      console.log( '---===cityReviews===---', cityReviews ); 
+      response.render('reviews/viewFull', { reviews: cityReviews, user: [] });
+    });
+});
 
 module.exports = router;

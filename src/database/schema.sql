@@ -19,9 +19,9 @@ CREATE TABLE reviews (
   id SERIAL PRIMARY KEY,
   user_id INTEGER NOT NULL,
   type_id INTEGER NOT NULL,
+  city VARCHAR(30) NULL,
   title VARCHAR(30) NOT NULL,
   body VARCHAR(255) NOT NULL,
-  city VARCHAR(30) NOT NULL,
   time_posted TIMESTAMP DEFAULT now()
 );
 
@@ -31,5 +31,7 @@ CREATE TABLE type_of_review (
   type_name VARCHAR(30) NOT NULL
 );
 
+
 ALTER TABLE reviews ADD FOREIGN KEY (user_id) REFERENCES "users" ("id") ON DELETE CASCADE;
 ALTER TABLE reviews ADD FOREIGN KEY (type_id) REFERENCES "type_of_review" ("id");
+

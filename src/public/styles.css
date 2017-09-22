@@ -8,6 +8,9 @@
   position: relative;
   z-index: 15;
   border-radius: 5px;
+} 
+.form h3{
+  text-align:center;
 }
 
 .nav-bar {
@@ -33,4 +36,8 @@
   width: 236px;
   height: 236px;
   border-radius: 50%;
+}
+
+.review-div {
+  padding: 40px 15px 40px 15px;
 }

@@ -1,18 +1,17 @@
 const bcrypt = require('bcrypt');
 const {
-  getUserByEmail,
-  getUserById,
+  getByEmail,
+  getById,
 } = require('../database/controllers/user');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
-passport.use(new LocalStrategy(
-  {
+passport.use(new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password',
   },
   (email, password, done) => {
-    getUserByEmail(email)
+    getByEmail(email)
       .then((user) => {
         if (!user) {
           return done(null, false, { message: 'Incorrect user email' });
@@ -25,7 +24,7 @@ passport.use(new LocalStrategy(
             return done(null, false);
           }
           return done(null, user);
-        });
+        })
       })
       .catch((error) => {
         return done(null, false, { message: 'Incorrect user email' });
@@ -38,7 +37,7 @@ passport.serializeUser((user, done) => {
 })
 
 passport.deserializeUser((userId, done) => {
-  getUserById(userId)
+  getById(userId)
     .then((user) => {
       done(null, user);
     })

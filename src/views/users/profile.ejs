@@ -1,6 +1,6 @@
 
-<% include ./partials/header.ejs %>
-<% include ./partials/navbar.ejs %>
+<% include ../partials/header.ejs %>
+<% include ../partials/navbar.ejs %>
 <div class="container">
   <div class="row">
     <div class="col-6 col-md-4 d-flex justify-content-center user-info">
@@ -10,7 +10,7 @@
 
       <% if (editing) { %>
         <h3>Edit Profile</h3>
-          <form action="/users/profile/edit" method="POST">
+          <form action="/profile/edit" method="POST">
             <div class="form-group">
               <label for="user_image">User Image URL</label>
              <input style="width: 95%; border-radius: 2px;" type="text" name="user_image" value="<%= user.user_image %>" placeholder="Image URL">
@@ -32,16 +32,16 @@
       <p><%= user.name %></p>
       <p><%= user.date_joined %></p>
       <p><%= user.current_city %></p>
-      <form action="/users/profile/edit" method="GET">
+      <form action="/profile/edit" method="GET">
        <button type="submit" class="btn btn-primary btn-lg btn-block" name="login-submit">Edit Profile</button>
       </form>
       <% } %>
     </div>
     </div>
     <div class="col col-md-8 posts">
-     <h2>Posts</h2>
-     <% include ./reviews/view %>
+     <h2>Reviews</h2>
+     <% include ../reviews/view.ejs %>
     </div>
   </div>
 </div>
-<% include ./partials/footer.ejs %>
+<% include ../partials/footer.ejs %>

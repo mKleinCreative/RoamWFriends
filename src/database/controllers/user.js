@@ -14,7 +14,7 @@ const create = (email,password) => {
     });
 };
 
-const getUserByEmail = (email) => {
+const getByEmail = (email) => {
   return db.oneOrNone(`
     SELECT *
     FROM users
@@ -23,7 +23,7 @@ const getUserByEmail = (email) => {
     `, [email]);
 };
 
-const getUserById = (id) => {
+const getById = (id) => {
   return db.oneOrNone(`
     SELECT *
     FROM users
@@ -44,7 +44,7 @@ const update = (name, current_city, user_image, id) => {
 
 module.exports = {
   create,
-  getUserByEmail,
-  getUserById,
+  getByEmail,
+  getById,
   update,
 };

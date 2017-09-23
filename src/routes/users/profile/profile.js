@@ -16,7 +16,7 @@ router.get('/', (request, response) => {
 router.get('/edit', (request, response) => {
   reviewFunctions.displayUserSpecificReviews(request.user.id)
     .then((reviews) => {
-      response.render('users/profile', { user: request.user, editing: true, reviews, city: true });
+      response.render('users/profile', { user: request.user, editing: true, reviews, city: false });
     });
 });
 
@@ -38,7 +38,7 @@ router.post('/edit', (request, response) => {
 router.get('/updated', (request, response) => {
   reviewFunctions.displayUserSpecificReviews(request.user.id)
     .then((reviews) => {
-      response.render('users/profile', { user: request.user, editing: false, reviews, city: true });
+      response.render('users/profile', { user: request.user, editing: false, reviews, city:false });
     });
 });
 
@@ -47,7 +47,7 @@ router.get('/review', (request, response) => {
   console.log( '---===userId===---', userId );
   reviewFunctions.displayUserSpecificReviews(userId)
     .then((allUserReviews) => {
-      console.log( '---===allUserReviews===---', allUserReviews ); 
+      console.log( '---===allUserReviews===---', allUserReviews );
       response.render('users/profile', { user: request.session.user, reviews: allUserReviews, city: true });
     });
 });

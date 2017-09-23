@@ -2,21 +2,22 @@
   <div class="d-flex justify-content-end">
     <div class="mr-auto p-2">
       <a href="/">
-        <img src="/images/Logo.png" class="logo" alt="Logo" style="width: 75px; height: 75px;">
+        <img src="/images/Logo.png" class="logo" alt="Logo" style="width: 100px; height: 100px;">
       </a>
     </div>
     <% if (user) { %>
       <% if(city) { %>
-        <div class="p-2">
-        <h3> <% reviews.city %> </h3>  
+        <div class=""style="  margin-right:50%;">
+        <h3> <%= reviews[0].city %> Reviews </h3>
         </div>
       <% } %>
-      <div class="p-2">
-        <a href="/reviews/new">New Post</a>
+      <div class="">
+        <a href="/reviews/new"><button type="button" class="btn btn-primary btn-md p-2">New Post</button></a>
       </div>
       <div class="p-2">
         <a href="/profile">Profile</a>
       </div>
+
       <div class="p-2">
         <a href="/login/logout">Log Out</a>
       </div>

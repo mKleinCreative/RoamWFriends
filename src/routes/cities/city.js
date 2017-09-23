@@ -13,7 +13,7 @@ router.get('/:city', (request, response) => {
       return cityReviews;
     })
     .then((cityReviews) => {
-      console.log('city-reviews==>',cityReviews.user_id)
+      console.log('city-reviews==>', cityReviews[0].city)
       userFunctions.getById(cityReviews[0].user_id)
         .then((reviewer) => {
         console.log('2city====>', reviewer)

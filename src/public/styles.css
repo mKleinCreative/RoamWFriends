@@ -2,6 +2,47 @@ body{
   font-family: 'Open Sans', sans-serif;
   background-image: url(./images/Clouds.jpg);
 }
+.slide{
+  width: 100%;
+  height: 900px;
+  background-color: grey;
+  display:none;
+}
+.splash-page{
+  background-image: url("http://t.wallpaperweb.org/wallpaper/buildings/1366x768/Louvre_Pyramid_at_Night_Paris_France_1366x768.jpg");
+}
+
+.splash-page2{
+  background-image: url("http://cdn.pcwallart.com/images/bangkok-temple-wallpaper-1.jpg");
+}
+
+.splash-page3{
+  background-image: url("http://cdn-image.travelandleisure.com/sites/default/files/styles/1600x1000/public/1446143216/tokyo-header-dg1015.jpg?itok=nOef-qJm");
+}
+.hide-splash{
+  display:none;
+}
+
+.buttons{
+  z-index: 10;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  height:8%;
+
+}
+i.fa{
+  margin-top: 20%;
+  font-size: 7em;
+  cursor:pointer;
+  color:white;
+  padding:25px;
+}
+.initSlide{
+  display:block;
+  left:0vw;
+}
+
 .form {
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
@@ -36,7 +77,10 @@ body{
   top:150px;
   padding-left:20%;
 }
-
+.citiesPosts{
+    top:100px;
+   padding-left:20%;
+}
 .profile-picture-main {
   width: 236px;
   height: 236px;
@@ -45,4 +89,11 @@ body{
 
 .review-div {
   padding: 40px 15px 40px 15px;
+}
+.btn-primary {
+    background:#3399FF;
+    color: #ffffff;
+}
+.footer{
+  height:50px;
 }

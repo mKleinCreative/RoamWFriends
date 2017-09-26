@@ -1,9 +1,17 @@
 <% include ../partials/header.ejs %>
 <% include ../partials/navbar.ejs %>
-<div class="splash-page" style="width: 100%; height: 600px; background-color: grey;">
-
+<div class="buttons">
+  <i class="fa fa-angle-left" aria-hidden="true"></i>
+  <i class="fa fa-angle-right" aria-hidden="true"></i>
 </div>
-<div class="col col-md-8 posts">
+<div class="slide splash-page">
+</div>
+<div class="slide splash-page2">
+</div>
+<div class="slide splash-page3 hide-splash">
+</div>
+
+<div class="col col-md-8 citiesPosts">
 <% reviews.forEach((reviews) => { %>
   <img src="<%= user.user_image %>" class="profile-picture-main" >
   <h2><%= reviews.city %></h2>

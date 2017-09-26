@@ -34,7 +34,7 @@ router.get('/:id', (request, response) => {
     .then((cityReviews) => {
       userFunctions.getById(cityReviews.user_id)
         .then((reviewer) => {
-          response.render('reviews/viewFull', { reviews: cityReviews, user: reviewer, city: true });
+          response.render('reviews/viewFull', { reviews: cityReviews, user: reviewer, city: null });
         });
     });
 });

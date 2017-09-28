@@ -26,11 +26,11 @@
   </div>
   <div class="form-group col-md-auto" >
     <label for="body">Review</label>
-    <textarea name="body" rows="10" cols="50" style="width: 95%; border-radius: 2.px;" value='<%= reviews.body %>'></textarea>
+    <textarea name="body" rows="10" cols="50" style="width: 95%; border-radius: 2.px;" value='<%= reviews.body %>'><%= reviews.body %></textarea>
   </div>
   <br>
   <p style="color: red;"><%= message %></p>
-  <button type="submit" class="btn btn-primary btn-lg btn-block" name=""">Submit</button>
+  <button type="submit" class="btn btn-primary btn-lg btn-block" name="">Submit</button>
 </form>
 
 <% include ../partials/footer.ejs %>

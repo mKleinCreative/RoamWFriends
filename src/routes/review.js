@@ -53,7 +53,8 @@ router.get('/:id/edit', (request, response) => {
     .then((cityReview) => {
       userFunctions.getById(cityReview.user_id)
         .then((reviewer) => {
-          response.render('reviews/edit', { reviews: cityReview, user: reviewer, message: null, city: true });
+          console.log('====>',reviewer)
+          response.render('reviews/edit', { reviews: cityReview, user: reviewer, message: null, city: null });
         });
     });
 });

@@ -1,12 +1,97 @@
 body{
   font-family: 'Open Sans', sans-serif;
   background-image: url(./images/Clouds.jpg);
+  background-repeat: no-repeat;
 }
 .slide{
   width: 100%;
   height: 900px;
   background-color: grey;
   display:none;
+  background : no-repeat ;
+  background-size: cover;
+}
+
+/*.slide{
+z-index: -5;
+position: absolute;
+left: 0px;
+margin: 0 auto;
+}*/
+.current-slide-transition{
+  z-index: -5;
+  /*position: absolute;
+  left: 0px;*/
+  /*margin: 0 auto;*/
+  animation-name: transition;
+  animation-duration: .5s;
+  animation-timing-function: ease-in;
+  animation-delay: 0;
+  animation-direction: normal;
+  animation-iteration-count: 1;
+  animation-fill-mode: backwards;
+  animation-play-state: running;
+}
+
+@keyframes transition {
+  0% {
+    position: absolute;
+    left: 0px;
+    margin: 0 auto;
+    left: 0vw;
+  }
+    100% {
+    left:100vw;
+  }
+}
+
+/*.next-slide-transition{
+  z-index: -5;
+  animation-name: transition;
+  animation-duration: .5s;
+  animation-timing-function: ease-in;
+  animation-delay: 0;
+  animation-direction: normal;
+  animation-iteration-count: 1;
+  animation-fill-mode: backwards;
+  animation-play-state: running;
+}
+
+@keyframes transition {
+  0% {
+    left: -100vw;
+  }
+    100% {
+      position: absolute;
+      left: 0px;
+      margin: 0 auto;
+  }
+}*/
+
+.previous-slide-transition{
+  z-index: -5;
+  /*position: absolute;
+  left: 0px;*/
+  /*margin: 0 auto;*/
+  animation-name: previous-transition;
+  animation-duration: .5s;
+  animation-timing-function: ease-in;
+  animation-delay: 0;
+  animation-direction: normal;
+  animation-iteration-count: 1;
+  animation-fill-mode: backwards;
+  animation-play-state: running;
+}
+
+@keyframes previous-transition {
+  0% {
+    left: -100vw;
+  }
+    100% {
+      position: absolute;
+      left: 0px;
+      margin: 0 auto;
+  }
 }
 .splash-page{
   background-image: url("http://t.wallpaperweb.org/wallpaper/buildings/1366x768/Louvre_Pyramid_at_Night_Paris_France_1366x768.jpg");
@@ -22,6 +107,28 @@ body{
 .hide-splash{
   display:none;
 }
+#center-text{
+  color: white;
+  text-align: center;
+  padding-top: 350px;
+  font-size: 6em;
+}
+
+p:first-letter{
+            text-transform: uppercase;
+       }
+     p {
+     color: #424242;
+     font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif;
+letter-spacing:0.1em;
+text-align:center;
+/*margin: 40px auto;*/
+text-transform: lowercase;
+line-height: 145%;
+font-size: 14pt;
+font-variant: small-caps;
+ text-shadow: 2px 2px 4px #000000;
+     }
 
 .buttons{
   z-index: 10;
@@ -31,12 +138,13 @@ body{
   height:8%;
 
 }
-i.fa{
+.arrow{
   margin-top: 20%;
   font-size: 7em;
   cursor:pointer;
   color:white;
   padding:25px;
+
 }
 .initSlide{
   display:block;
@@ -82,13 +190,15 @@ i.fa{
    padding-left:20%;
 }
 .profile-picture-main {
+  /*width: 100%;*/
+   /*height: auto;*/
   width: 236px;
   height: 236px;
   border-radius: 50%;
 }
 
 .review-div {
-  padding: 40px 15px 40px 15px;
+  padding: 20px 5px 20px 5px;
 }
 .btn-primary {
     background:#3399FF;

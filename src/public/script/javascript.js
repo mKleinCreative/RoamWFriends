@@ -18,15 +18,29 @@ slideManager = (slideDirection) => {
     currentIndex = slides.length-1
     nextSlideIndex = 0;
     prevSlideIndex = currentIndex-1;
+
+    console.log('previous', prevSlideIndex)
+    console.log('current', currentIndex )
+    console.log('next', nextSlideIndex)
+
   }
   else if(currentIndex === slides.length -1 && slideDirection === 1){
+    prevSlideIndex = currentIndex;
     currentIndex = 0;
     nextSlideIndex = currentIndex + 1;
-    prevSlideIndex = currentIndex - 1;
+
+    // prevSlideIndex = currentIndex - 1;
+
+    console.log('previous', prevSlideIndex)
+    console.log('current', currentIndex )
+    console.log('next', nextSlideIndex)
   } else {
+
     currentIndex += slideDirection;
     nextSlideIndex = currentIndex +1;
     prevSlideIndex = currentIndex -1;
+    // slides[currentIndex].classList.add('current-slide-transition')
+    // slides[prevSlideIndex].classList.add('previous-slide-transition')
   }
   if(slideDirection < 0) {
     slides[nextSlideIndex].classList.remove('initSlide')

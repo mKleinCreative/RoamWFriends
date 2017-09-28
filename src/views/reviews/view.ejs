@@ -2,7 +2,7 @@
 <% reviews.forEach((reviews) => { %>
   <div class="review-div">
     <h4><a href=/reviews/<%= reviews.id %>> "<%= reviews.title %>" </a></h4>
-
+<hr>
     <form style="float:left; padding-right: 11px;"  class="delete-post" action='/reviews/<%= reviews.id %>/delete' method="post">
       <a href=/reviews/<%= reviews.id %>/delete><i class="fa fa-trash-o" aria-hidden="true"></i></a>
     </form>

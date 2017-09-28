@@ -28,10 +28,10 @@
             <button type="submit" class="btn btn-success btn-lg btn-block" name="login-submit">Save Changes</button>
           </form>
       <% } else { %>
-      <h3>User Profile</h3>
-      <p><%= user.name %></p>
-      <p><%= user.date_joined %></p>
-      <p><%= user.current_city %></p>
+      <h2>User Profile</h2>
+      <h4 style="padding-right:1%"><%= user.name %></h4>
+      <h6><%= user.date_joined %></h6>
+      <h5 style="text-align:center;"><%= user.current_city %></h5>
       <form action="/profile/edit" method="GET">
        <button type="submit" class="btn btn-primary btn-lg btn-block" name="login-submit">Edit Profile</button>
       </form>

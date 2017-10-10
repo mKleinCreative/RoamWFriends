@@ -1,7 +1,12 @@
 body{
   font-family: 'Open Sans', sans-serif;
   background-image: url(./images/Clouds.jpg);
-  background-repeat: no-repeat;
+
+}
+h2 h3{
+  line-height: 1.2em;
+  margin-bottom: .3em;
+  color: rgba(255,255,255,.95);
 }
 .slide{
   width: 100%;

@@ -15,10 +15,11 @@
 <% reviews.forEach((reviews) => { %>
   <img src="<%= user.user_image %>" class="profile-picture-main" >
   <h2><%= reviews.city %></h2>
-  <h3><%= reviews.title %></h3>
-   <p><i><%= reviews.time_posted %></i></p>
-   <p><%= reviews.body %></p>
-
+  <hr>
+  <h4><%= reviews.title %></h4>
+   <h5 style="text-align:center;"><%= reviews.body %></h5>
+<h5><i><%= reviews.time_posted %></i></h5>
+<br>
 <% }); %>
 </div>
 <% include ../partials/footer.ejs %>

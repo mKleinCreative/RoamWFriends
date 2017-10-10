@@ -16,9 +16,10 @@
         <h1><%= reviews.city %></h1>
 
         <hr>
-           <h2 style="text-align:center;"><%= reviews.title %></h2>
+           <h4 style="text-align:center;"><%= reviews.title %> :<%=reviews.type_id%> Review</h4>
            <br>
-         <h3><%= reviews.body %></h3>
+         <blockquote style="text-item:center;"><%= reviews.body %></blockquote>
+
           <h6 style="text-align:center;"><i><%= reviews.time_posted %></i></h6>
 
     </div>

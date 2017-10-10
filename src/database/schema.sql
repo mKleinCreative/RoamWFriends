@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS roamwfriends;
-CREATE DATABASE roamwfriends;
+-- DROP DATABASE IF EXISTS roamwfriends;
+-- CREATE DATABASE roamwfriends;
 
-\c roamwfriends;
+-- \c roamwfriends;
 
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (

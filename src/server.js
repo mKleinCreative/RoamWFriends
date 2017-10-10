@@ -56,6 +56,6 @@ server.use('/reviews', review);
 server.use('/users', user);
 server.use('/profile', profile);
 
-server.listen(3000, (err) => {
+server.listen(port, (err) => {
   console.log(`<3333333 running server on port ${port} <3333333`);
 });

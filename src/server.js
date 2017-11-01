@@ -24,6 +24,7 @@ server.set('views', __dirname + '/views');
 server.use(express.static('./src/public'));
 
 server.use(session({
+  name:'Roam-session',
   store: new pgSession({
     conString: connectionString,
   }),
